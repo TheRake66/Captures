@@ -290,8 +290,8 @@ namespace Captures
                 // Tous les écrans
                 if (owner == this.touchePourTousToolStripMenuItem)
                 {
-                    if (pMenuCliked == this.SelectedKeyWin) MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else if (pMenuCliked == this.SelectedKeyZone) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (pMenuCliked.Tag == this.SelectedKeyWin.Tag) MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (pMenuCliked.Tag == this.SelectedKeyZone.Tag) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         configSave(ref this.SelectedKeyAlls, pMenuCliked);
@@ -301,8 +301,8 @@ namespace Captures
                 // Fenetre active
                 else if (owner == this.touchePourActiveToolStripMenuItem)
                 {
-                    if (pMenuCliked == this.SelectedKeyAlls) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else if (pMenuCliked == this.SelectedKeyZone) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (pMenuCliked.Tag == this.SelectedKeyAlls.Tag) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (pMenuCliked.Tag == this.SelectedKeyZone.Tag) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         configSave(ref this.SelectedKeyWin, pMenuCliked);
@@ -312,8 +312,8 @@ namespace Captures
                 // Zone
                 else if (owner == this.touchePourZoneToolStripMenuItem)
                 {
-                    if (pMenuCliked == this.SelectedKeyWin) MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else if (pMenuCliked == this.SelectedKeyAlls) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (pMenuCliked.Tag == this.SelectedKeyWin.Tag) MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (pMenuCliked.Tag == this.SelectedKeyAlls.Tag) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     else
                     {
                         configSave(ref this.SelectedKeyZone, pMenuCliked);
