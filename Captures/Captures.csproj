@@ -60,7 +60,7 @@
     <ApplicationIcon>icons8_vintage_camera_160px.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>D37AAE4918BD1E888C1D9BAE942246FA1F1BF2C0</ManifestCertificateThumbprint>
