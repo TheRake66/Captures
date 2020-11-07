@@ -123,6 +123,8 @@ namespace Captures
             try { this.Height = Convert.ToInt32(sizeh); }
             catch { this.Height = 600; }
 
+            // Autostart
+            if (File.Exists(getStartupShortcut())) this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = true;
 
             // Taille des images
             try
@@ -639,7 +641,7 @@ namespace Captures
             this.config.AppSettings.Settings["StartOnBoot"].Value = éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked.ToString();
 
             // Startup + Captures + .bat
-            string shortcutname = Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\" + Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".bat";
+            string shortcutname = getStartupShortcut();
             if (this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked)
             {
                 try { File.AppendAllText(shortcutname, @"start """" """ + Application.ExecutablePath + @""" --hide"); }
@@ -650,6 +652,12 @@ namespace Captures
                 try { File.Delete(shortcutname); }
                 catch { }
             }
+            //--------------------------------
+        }
+        private string getStartupShortcut()
+        {
+            //--------------------------------
+            return Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\" + Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".bat";
             //--------------------------------
         }
 
