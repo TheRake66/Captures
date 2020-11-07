@@ -13,13 +13,15 @@ using System.Resources;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Configuration;
 using System.Collections.Specialized;
 using System.Deployment.Application;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using Newtonsoft.Json;
+
+
 
 namespace Captures
 {
@@ -51,8 +53,7 @@ namespace Captures
         private Point DrawingStartPoint; // idem
         private int TailleImageList; // Taille des image dans l'explorateur
         private string DossierCapture;
-
-        private Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None); // Fichier de config
+        private AppConfig ConfigFile;
         //=================================================================
 
 
@@ -63,16 +64,20 @@ namespace Captures
         {
             //--------------------------------
             // Charge les composants
-            // Gère la langue
-            string langue = this.config.AppSettings.Settings["Language"].Value;
+            string configstr = "";
+            try { configstr = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Captures.json"); }
+            catch { }
+            this.ConfigFile = JsonConvert.DeserializeObject<AppConfig>(configstr);
 
-            if (!new string[] { "fr", "es", "en", "zh"}.Contains(langue)) langue = "fr";
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(langue);
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(langue);
+
+            CultureInfo langue = this.ConfigFile.Language;
+            if (!new string[] { "fr", "es", "en", "zh"}.Contains(langue.Name)) langue = new CultureInfo("fr");
+            Thread.CurrentThread.CurrentUICulture = langue;
+            Thread.CurrentThread.CurrentCulture = langue;
 
             InitializeComponent();
 
-            switch (langue)
+            switch (langue.Name)
             {
                 case "fr":
                     this.françaisToolStripMenuItem.CheckState = CheckState.Indeterminate;
@@ -94,112 +99,97 @@ namespace Captures
         {
             //--------------------------------
             // Charge la config
-            string startup      = this.config.AppSettings.Settings["StartOnBoot"].Value;
-            string notify       = this.config.AppSettings.Settings["Notify"].Value;
-            string sizew        = this.config.AppSettings.Settings["WindowSizeWidth"].Value;
-            string sizeh        = this.config.AppSettings.Settings["WindowSizeHeight"].Value;
-            string iconsize     = this.config.AppSettings.Settings["IconSize"].Value;
-            string formatfile   = this.config.AppSettings.Settings["Format"].Value;
-            string keyall       = this.config.AppSettings.Settings["KeyAllsScreens"].Value;
-            string keyactive    = this.config.AppSettings.Settings["KeyActiveWindow"].Value;
-            string keyzone      = this.config.AppSettings.Settings["KeyZone"].Value;
-            string folder       = this.config.AppSettings.Settings["SavePathFolder"].Value;
+            bool startup            = this.ConfigFile.StartOnBoot;
+            bool notify             = this.ConfigFile.Notify;
+            int sizew               = this.ConfigFile.WindowSizeWidth;
+            int sizeh               = this.ConfigFile.WindowSizeHeight;
+            int iconsize            = this.ConfigFile.IconSize;
+            ImageFormat formatfile  = this.ConfigFile.Format;
+            int keyall              = this.ConfigFile.KeyAllsScreens;
+            int keyactive           = this.ConfigFile.KeyActiveWindow;
+            int keyzone             = this.ConfigFile.KeyZone;
+            string folder           = this.ConfigFile.SavePathFolder;
 
 
             // Gère l'autostart
-            if (startup.Equals("True")) this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = true;
-
-
+            this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = startup;
             // Gère les notifications
-            if (notify.Equals("True")) this.notificationsLorsDesCapturesToolStripMenuItem.Checked = true;
-
-
+            this.notificationsLorsDesCapturesToolStripMenuItem.Checked = notify;
             // Largeur
-            try { this.Width = Convert.ToInt32(sizew); }
-            catch { this.Width = 700; }
-
-
+            this.Width = sizew;
             // Hauteur
-            try { this.Height = Convert.ToInt32(sizeh); }
-            catch { this.Height = 600; }
-
+            this.Height = sizeh;
             // Autostart
-            if (File.Exists(getStartupShortcut())) this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = true;
+            this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = File.Exists(getStartupShortcut());
 
             // Taille des images
-            try
-            {
-                this.TailleImageList = Convert.ToInt32(iconsize);
-                if (!new int[] { 16, 32, 64, 128, 256}.Contains(this.TailleImageList)) this.TailleImageList = 64;
-            }
-            catch { this.TailleImageList = 64; }
+            if (!new int[] { 16, 32, 64, 128, 256 }.Contains(iconsize)) this.TailleImageList = 64;
+            else this.TailleImageList = iconsize;
             this.toolStripStatusLabel2.Text = this.TailleImageList + "x" + this.TailleImageList;
 
-
             // Dossier
-            string defaultfolder = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + @"\Czzaptures";
-            if (folder.Equals("")) folder = defaultfolder;
             if (!Directory.Exists(folder))
             {
                 try { Directory.CreateDirectory(folder); }
-                catch
-                {
-                    try
-                    {
-                        Directory.CreateDirectory(defaultfolder);
-                        folder = defaultfolder;
-                    }
-                    catch { folder = MenuLang.Error_NoFolder; }
-                }
+                catch { folder = MenuLang.Error_NoFolder; }
             }
             this.toolStripStatusLabel1.Text = folder;
             this.DossierCapture = folder;
 
-
             // Format de fichier
-            List<string> format = new List<string>();
-            format.Add(".PNG");
-            format.Add(".JPEG");
-            format.Add(".JPG");
-            format.Add(".BMP");
-            format.Add(".ICO");
-            format.Add(".GIF");
-            if (!format.Contains(formatfile)) formatfile = ".PNG";
-            this.SelectedFormat = LoadToolStripShortcut(this.formatToolStripMenuItem, format, formatfile);
+            List<string> formats = new List<string>();
+            List<object> formatstag = new List<object>();
+            formats.Add(".PNG");
+            formats.Add(".JPEG");
+            formats.Add(".BMP");
+            formats.Add(".ICO");
+            formats.Add(".GIF");
+            formatstag.Add(ImageFormat.Png);
+            formatstag.Add(ImageFormat.Jpeg);
+            formatstag.Add(ImageFormat.Bmp);
+            formatstag.Add(ImageFormat.Icon);
+            formatstag.Add(ImageFormat.Gif);
+            if (!formatstag.Contains(formatfile)) formatfile = ImageFormat.Png;
+            this.SelectedFormat = LoadToolStripShortcut(this.formatToolStripMenuItem, formats, formatstag, formatfile);
 
 
             // Hotkeys
-            List<string> hotkey = new List<string>();
-            for (int i = 1; i < 13; i++) { hotkey.Add("F" + i); }
+            List<string> hotkeys = new List<string>();
+            List<object> hotkeysstag = new List<object>();
+            for (int i = 1; i < 13; i++)
+            { 
+                hotkeys.Add("F" + i);
+                hotkeysstag.Add(i); 
+            }
 
-            if (!hotkey.Contains(keyall)) { keyall = "F9"; }
-            if (!hotkey.Contains(keyactive)) { keyactive = "F8"; }
-            if (!hotkey.Contains(keyzone)) { keyzone = "F10"; }
+            if (!hotkeysstag.Contains(keyall)) { keyall = 9; }
+            if (!hotkeysstag.Contains(keyactive)) { keyactive = 8; }
+            if (!hotkeysstag.Contains(keyzone)) { keyzone = 10; }
 
-            bool finderror = false;
+            bool finderror;
             do
             {
                 finderror = false;
                 if (keyall == keyactive || keyall == keyzone)
                 { 
-                    keyall = "F9";
+                    keyall = 9;
                     finderror = true;
                 }
                 if (keyactive == keyall || keyactive == keyzone)
                 {
-                    keyactive = "F8";
+                    keyactive = 8;
                     finderror = true;
                 }
                 if (keyzone == keyall || keyzone == keyactive)
                 { 
-                    keyzone = "F10";
+                    keyzone = 10;
                     finderror = true;
                 }
             } while (finderror);
 
-            this.SelectedKeyAlls = LoadToolStripShortcut(this.touchePourTousToolStripMenuItem, hotkey, keyall);
-            this.SelectedKeyWin = LoadToolStripShortcut(this.touchePourActiveToolStripMenuItem, hotkey, keyactive);
-            this.SelectedKeyZone = LoadToolStripShortcut(this.touchePourZoneToolStripMenuItem, hotkey, keyzone);
+            this.SelectedKeyAlls = LoadToolStripShortcut(this.touchePourTousToolStripMenuItem, hotkeys, hotkeysstag, keyall);
+            this.SelectedKeyWin = LoadToolStripShortcut(this.touchePourActiveToolStripMenuItem, hotkeys, hotkeysstag, keyactive);
+            this.SelectedKeyZone = LoadToolStripShortcut(this.touchePourZoneToolStripMenuItem, hotkeys, hotkeysstag, keyzone);
 
 
             // Charge les images dans l'explorateur
@@ -230,7 +220,8 @@ namespace Captures
             }
             else
             {
-                try { this.config.Save(ConfigurationSaveMode.Modified); }
+                string configstr = JsonConvert.SerializeObject(this.ConfigFile);
+                try { File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Captures.json", configstr); }
                 catch { }
             }
             //--------------------------------
@@ -249,8 +240,8 @@ namespace Captures
             //--------------------------------
             if (this.WindowState != FormWindowState.Maximized)
             {
-                this.config.AppSettings.Settings["WindowSizeWidth"].Value = this.Width.ToString();
-                this.config.AppSettings.Settings["WindowSizeHeight"].Value = this.Height.ToString();
+               this.ConfigFile.WindowSizeWidth = this.Width;
+               this.ConfigFile.WindowSizeHeight = this.Height;
             }
             //--------------------------------
         }
@@ -260,18 +251,19 @@ namespace Captures
 
         //=================================================================
         // Crée dynamiquement les toolstrip
-        private ToolStripMenuItem LoadToolStripShortcut(ToolStripMenuItem pMenuStrip, List<string> pListItem, string pDefault)
+        private ToolStripMenuItem LoadToolStripShortcut(ToolStripMenuItem pMenuStrip, List<string> pListItem, List<object> pListTag, object pDefault)
         {
             //--------------------------------
             ToolStripMenuItem selected = new ToolStripMenuItem();
 
-            foreach (string itemtext in pListItem)
+            for (int i = 0; i < pListItem.Count; i++)
             {
                 ToolStripMenuItem key = new ToolStripMenuItem();
-                key.Text = itemtext;
+                key.Text = pListItem[i];
+                key.Tag = pListTag[i];
                 key.Click += new EventHandler((s, e) => { ClickToolStripShortcut(key); });
-                if (itemtext == pDefault)
-                { 
+                if (pListTag[i].Equals(pDefault))
+                {
                     key.CheckState = CheckState.Indeterminate;
                     selected = key;
                 }
@@ -289,44 +281,47 @@ namespace Captures
 
             if (owner == this.formatToolStripMenuItem)
             {
-                configSave(this.SelectedFormat, pMenuCliked, "Format");
+                configSave(ref this.SelectedFormat, pMenuCliked);
+                this.ConfigFile.Format = (ImageFormat)pMenuCliked.Tag;
                 LoadCaptureExplorer();
             }
-            // Tous les écrans
-            else if (owner == this.touchePourTousToolStripMenuItem)
-            { 
-                if (pMenuCliked == this.SelectedKeyWin)       MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (pMenuCliked == this.SelectedKeyZone) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
-                {
-                    configSave(this.SelectedKeyAlls, pMenuCliked, "KeyAllsScreens");
-                    LoadNotifyToolStrip();
-                    IsPressed(pMenuCliked); // vide la mémoire
-                }
-            }
-            // Fenetre active
-            else if (owner == this.touchePourActiveToolStripMenuItem)
+            else
             {
-                if (pMenuCliked == this.SelectedKeyAlls)      MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (pMenuCliked == this.SelectedKeyZone) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                // Tous les écrans
+                if (owner == this.touchePourTousToolStripMenuItem)
                 {
-                    configSave(this.SelectedKeyWin, pMenuCliked, "KeyActiveWindow");
-                    LoadNotifyToolStrip();
-                    IsPressed(pMenuCliked); // vide la mémoire
+                    if (pMenuCliked == this.SelectedKeyWin) MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (pMenuCliked == this.SelectedKeyZone) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        configSave(ref this.SelectedKeyAlls, pMenuCliked);
+                        this.ConfigFile.KeyAllsScreens = (int)pMenuCliked.Tag;
+                    }
                 }
-            }
-            // Zone
-            else if (owner == this.touchePourZoneToolStripMenuItem)
-            {
-                if (pMenuCliked == this.SelectedKeyWin)       MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (pMenuCliked == this.SelectedKeyAlls) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                // Fenetre active
+                else if (owner == this.touchePourActiveToolStripMenuItem)
                 {
-                    configSave(this.SelectedKeyZone, pMenuCliked, "KeyZone");
-                    LoadNotifyToolStrip();
-                    IsPressed(pMenuCliked); // vide la mémoire
+                    if (pMenuCliked == this.SelectedKeyAlls) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (pMenuCliked == this.SelectedKeyZone) MessageBox.Show(MenuLang.Error_UsedArea, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        configSave(ref this.SelectedKeyWin, pMenuCliked);
+                        this.ConfigFile.KeyActiveWindow = (int)pMenuCliked.Tag;
+                    }
                 }
+                // Zone
+                else if (owner == this.touchePourZoneToolStripMenuItem)
+                {
+                    if (pMenuCliked == this.SelectedKeyWin) MessageBox.Show(MenuLang.Error_UsedWin, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (pMenuCliked == this.SelectedKeyAlls) MessageBox.Show(MenuLang.Error_UsedAlls, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        configSave(ref this.SelectedKeyZone, pMenuCliked);
+                        this.ConfigFile.KeyZone = (int)pMenuCliked.Tag;
+                    }
+                }
+                LoadNotifyToolStrip();
+                IsPressed(pMenuCliked); // vide la mémoire
             }
 
             /* Pourquoi vider la mémoire ? Lors de l'appel de asynckey il va résupérer la touche cliqué.
@@ -339,14 +334,12 @@ namespace Captures
             //--------------------------------
         }
         // Sauvegarde les toolstrip dans la config et code/decoche
-        private void configSave(ToolStripMenuItem aDecocher, ToolStripMenuItem aCocher, string configName)
+        private void configSave(ref ToolStripMenuItem aDecocher, ToolStripMenuItem aCocher)
         {
             //--------------------------------
             aDecocher.Checked = false;
             aCocher.CheckState = CheckState.Indeterminate;
             aDecocher = aCocher;
-
-            this.config.AppSettings.Settings[configName].Value = aCocher.Text;
             //--------------------------------
         }
         //=================================================================
@@ -518,7 +511,7 @@ namespace Captures
             this.toolStripStatusLabel2.Text = this.TailleImageList + "x" + this.TailleImageList;
             if (this.TailleImageList == 256) this.toolStripStatusLabel2.Text += " (" + MenuLang.Max + ")";
             else if (this.TailleImageList == 16) this.toolStripStatusLabel2.Text += " (" + MenuLang.Min + ")";
-            this.config.AppSettings.Settings["IconSize"].Value = this.TailleImageList.ToString();
+           this.ConfigFile.IconSize = this.TailleImageList;
             LoadCaptureExplorer();
             //--------------------------------
         }
@@ -620,7 +613,7 @@ namespace Captures
             {
                 this.toolStripStatusLabel1.Text = diag.SelectedPath;
                 this.DossierCapture = diag.SelectedPath;
-                this.config.AppSettings.Settings["SavePathFolder"].Value = diag.SelectedPath;
+               this.ConfigFile.SavePathFolder = diag.SelectedPath;
                 LoadCaptureExplorer();
             }
             //--------------------------------
@@ -630,7 +623,7 @@ namespace Captures
         {
             //--------------------------------
             notificationsLorsDesCapturesToolStripMenuItem.Checked = !this.notificationsLorsDesCapturesToolStripMenuItem.Checked;
-            this.config.AppSettings.Settings["Notify"].Value = notificationsLorsDesCapturesToolStripMenuItem.Checked.ToString();
+           this.ConfigFile.Notify = notificationsLorsDesCapturesToolStripMenuItem.Checked;
             //--------------------------------
         }
         // Autostart active/desactive
@@ -638,13 +631,22 @@ namespace Captures
         {
             //--------------------------------
             éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = !this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked;
-            this.config.AppSettings.Settings["StartOnBoot"].Value = éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked.ToString();
+           this.ConfigFile.StartOnBoot = éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked;
 
             // Startup + Captures + .bat
             string shortcutname = getStartupShortcut();
             if (this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked)
             {
-                try { File.AppendAllText(shortcutname, @"start """" """ + Application.ExecutablePath + @""" --hide"); }
+                try 
+                {
+                    // Créer un raccourci
+                    IWshRuntimeLibrary.WshShell wsh = new IWshRuntimeLibrary.WshShell();
+                    IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)wsh.CreateShortcut(shortcutname);
+                    shortcut.TargetPath = Application.ExecutablePath;
+                    shortcut.Arguments = "--hide";
+                    shortcut.IconLocation = shortcut.TargetPath;
+                    shortcut.Save();
+                }
                 catch { }
             }
             else
@@ -657,7 +659,7 @@ namespace Captures
         private string getStartupShortcut()
         {
             //--------------------------------
-            return Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\" + Path.GetFileNameWithoutExtension(Application.ExecutablePath) + ".bat";
+            return Environment.GetFolderPath(Environment.SpecialFolder.Startup) + @"\Captures.lnk";
             //--------------------------------
         }
 
@@ -665,7 +667,7 @@ namespace Captures
         private void changeLanguageClick(object sender, EventArgs e)
         {
             //--------------------------------
-            this.config.AppSettings.Settings["Language"].Value = (string)((ToolStripMenuItem)sender).Tag;
+           this.ConfigFile.Language = new CultureInfo((string)((ToolStripMenuItem)sender).Tag);
             Application.Restart();
             //--------------------------------
         }
@@ -952,8 +954,11 @@ namespace Captures
             /* -32767 = Clé presse en temps réel.
              * 1 = Si la clé à été préssée depuis la dernière vérif.
              * 0 = Clé non pressée.
-             */
-            if (GetAsyncKeyState(111 + Convert.ToInt32(pMenu.Text.Replace("F", ""))) == 0) return false;
+             * 
+             * 111 + 1 = F1   111 + 5 = F5 etc...
+             */ 
+
+            if (GetAsyncKeyState(111 + (int)pMenu.Tag) == 0) return false;
             else return true;
             //-----------------------------------------------
         }
