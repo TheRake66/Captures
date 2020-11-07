@@ -1003,7 +1003,7 @@ namespace Captures
                     if (MessageBox.Show(MenuLang.Update_Valaible + 
                         Environment.NewLine +
                         currentversion + " → " + lastversion
-                        , "Captures", MessageBoxButtons.OK, MessageBoxIcon.Warning) == DialogResult.OK)
+                        , "Captures", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         try { Process.Start("explorer", "https://github.com/TheRake66/Captures"); }
                         catch { }
