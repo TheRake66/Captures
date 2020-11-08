@@ -68,7 +68,7 @@ namespace Captures
             try { configstr = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Captures.json"); }
             catch { }
             this.ConfigFile = JsonConvert.DeserializeObject<AppConfig>(configstr);
-
+            if (this.ConfigFile == null) this.ConfigFile = new AppConfig();
 
             CultureInfo langue = this.ConfigFile.Language;
             if (!new string[] { "fr", "es", "en", "zh"}.Contains(langue.Name)) langue = new CultureInfo("fr");

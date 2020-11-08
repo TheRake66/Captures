@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Captures")]
-[assembly: AssemblyCopyright("© Bustos Thibault - 2020")]
+[assembly: AssemblyCopyright("© BUSTOS Thibault (TheRake66) - 2020")]
 [assembly: AssemblyTrademark("Captures")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("5.0.0.5")]
-[assembly: AssemblyFileVersion("5.0.0.5")]
+[assembly: AssemblyVersion("5.0.0.6")]
+[assembly: AssemblyFileVersion("5.0.0.6")]
