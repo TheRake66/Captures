@@ -214,6 +214,15 @@ namespace Captures {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Une erreur fatale est survenue !\nMessage : .
+        /// </summary>
+        internal static string Fatal_Error {
+            get {
+                return ResourceManager.GetString("Fatal_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chargement.
         /// </summary>
         internal static string Loading {

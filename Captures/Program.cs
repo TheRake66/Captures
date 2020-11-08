@@ -14,13 +14,21 @@ namespace Captures
         static void Main()
         {
             //--------------------------------
-            bool createdNew;
-            Mutex mutex = new Mutex(true, "Captures", out createdNew);
-            if (!createdNew) return;
+            try
+            {
+                bool createdNew;
+                Mutex mutex = new Mutex(true, "Captures", out createdNew);
+                if (!createdNew) return;
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu());
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Menu());
+            } 
+            catch (Exception ex)
+            {
+                MessageBox.Show(MenuLang.Fatal_Error + ex.Message, "Captures", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //--------------------------------
         }
         //=================================================================

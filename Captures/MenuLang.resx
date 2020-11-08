@@ -168,6 +168,9 @@
   <data name="Error_UsedWin" xml:space="preserve">
     <value>Erreur, cette touche est déjà utilisée pour la capture de fenêtre !</value>
   </data>
+  <data name="Fatal_Error" xml:space="preserve">
+    <value>Une erreur fatale est survenue !\nMessage : </value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>Chargement</value>
   </data>

@@ -168,6 +168,9 @@
   <data name="Error_UsedWin" xml:space="preserve">
     <value>错误，此键已用于窗口捕获！</value>
   </data>
+  <data name="Fatal_Error" xml:space="preserve">
+    <value>发生致命错误 !\n信息 : </value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>载入中</value>
   </data>

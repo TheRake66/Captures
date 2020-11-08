@@ -168,6 +168,9 @@
   <data name="Error_UsedWin" xml:space="preserve">
     <value>Error, this key is already used for window capture !</value>
   </data>
+  <data name="Fatal_Error" xml:space="preserve">
+    <value>A fatal error has occurred !\nMessage : </value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading</value>
   </data>
