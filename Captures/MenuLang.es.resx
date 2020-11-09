@@ -192,6 +192,9 @@
   <data name="Update_Fail" xml:space="preserve">
     <value>¡ No se puede buscar actualizaciones !</value>
   </data>
+  <data name="Update_Fail2" xml:space="preserve">
+    <value>¡ No se pueden descargar las actualizaciones !</value>
+  </data>
   <data name="Update_None" xml:space="preserve">
     <value>¡ Ya tienes la última versión !</value>
   </data>

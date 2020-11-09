@@ -1010,15 +1010,12 @@ namespace Captures
             //--------------------------------
             try
             {
+                WebClient client = new WebClient();
                 string remoteUri = "https://raw.githubusercontent.com/TheRake66/Captures/master/version";
-
-                string lastversion;
+                string lastversion = client.DownloadString(remoteUri);
                 string currentversion = typeof(Menu).Assembly.GetName().Version.ToString();
-
-                using (WebClient client = new WebClient())
-                {
-                    lastversion = Encoding.UTF8.GetString(client.DownloadData(remoteUri));
-                }
+                string setupUri = "https://github.com/TheRake66/Captures/raw/master/EasySetupWizard_Captures_" + lastversion + ".exe";
+                string setupFile = Path.GetTempPath() + "EasySetupWizard_Captures_" + lastversion + ".exe";
 
                 if (lastversion.Equals(currentversion))
                 {
@@ -1031,8 +1028,12 @@ namespace Captures
                         currentversion + " → " + lastversion
                         , "Captures", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        try { Process.Start("explorer", "https://github.com/TheRake66/Captures"); }
-                        catch { }
+                        try
+                        {
+                            client.DownloadFile(setupUri, setupFile);
+                            Process.Start(setupFile);
+                        }
+                        catch { MessageBox.Show(MenuLang.Update_Fail2, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                     }
                 }
             }

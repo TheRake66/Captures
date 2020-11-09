@@ -277,11 +277,20 @@ namespace Captures {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Impossible de vérifier les mise à jours !.
+        ///   Recherche une chaîne localisée semblable à Impossible de vérifier les mises à jour !.
         /// </summary>
         internal static string Update_Fail {
             get {
                 return ResourceManager.GetString("Update_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Impossible de télécharger les mises à jour !.
+        /// </summary>
+        internal static string Update_Fail2 {
+            get {
+                return ResourceManager.GetString("Update_Fail2", resourceCulture);
             }
         }
         

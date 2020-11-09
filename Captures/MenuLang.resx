@@ -190,7 +190,10 @@
     <value>sélectionnées</value>
   </data>
   <data name="Update_Fail" xml:space="preserve">
-    <value>Impossible de vérifier les mise à jours !</value>
+    <value>Impossible de vérifier les mises à jour !</value>
+  </data>
+  <data name="Update_Fail2" xml:space="preserve">
+    <value>Impossible de télécharger les mises à jour !</value>
   </data>
   <data name="Update_None" xml:space="preserve">
     <value>Vous possédez déjà la dernière version !</value>

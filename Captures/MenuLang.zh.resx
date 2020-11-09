@@ -192,6 +192,9 @@
   <data name="Update_Fail" xml:space="preserve">
     <value>无法检查更新！</value>
   </data>
+  <data name="Update_Fail2" xml:space="preserve">
+    <value>无法下载更新 !</value>
+  </data>
   <data name="Update_None" xml:space="preserve">
     <value>您已经有最新版本！</value>
   </data>

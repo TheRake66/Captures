@@ -192,6 +192,9 @@
   <data name="Update_Fail" xml:space="preserve">
     <value>Unable to check for updates !</value>
   </data>
+  <data name="Update_Fail2" xml:space="preserve">
+    <value>Unable to download updates !</value>
+  </data>
   <data name="Update_None" xml:space="preserve">
     <value>You already have the latest version !</value>
   </data>
