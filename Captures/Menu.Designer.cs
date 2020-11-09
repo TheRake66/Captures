@@ -76,6 +76,7 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripStatusLabel14 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -295,6 +296,7 @@
             this.toolStripStatusLabel7,
             this.toolStripStatusLabel9,
             this.toolStripStatusLabel10,
+            this.toolStripStatusLabel14,
             this.toolStripStatusLabel8,
             this.toolStripStatusLabel11,
             this.toolStripStatusLabel12,
@@ -443,6 +445,15 @@
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
+            // toolStripStatusLabel14
+            // 
+            this.toolStripStatusLabel14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel14, "toolStripStatusLabel14");
+            this.toolStripStatusLabel14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.toolStripStatusLabel14.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
+            this.toolStripStatusLabel14.Name = "toolStripStatusLabel14";
+            this.toolStripStatusLabel14.Click += new System.EventHandler(this.toolStripStatusLabel14_Click);
+            // 
             // Menu
             // 
             resources.ApplyResources(this, "$this");
@@ -518,6 +529,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel12;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem chinoisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel14;
     }
 }
 

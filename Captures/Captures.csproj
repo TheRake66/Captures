@@ -130,6 +130,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MenuLang.es.resx</DependentUpon>
     </Compile>
+    <Compile Include="MenuLang.zh.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuLang.zh.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="About.en.resx">
@@ -156,7 +161,10 @@
     <EmbeddedResource Include="Menu.zh.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MenuLang.zh.resx" />
+    <EmbeddedResource Include="MenuLang.zh.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuLang.zh.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MenuLang.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuLang.en.Designer.cs</LastGenOutput>

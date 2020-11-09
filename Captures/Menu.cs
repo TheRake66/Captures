@@ -529,6 +529,17 @@ namespace Captures
             this.toolStripStatusLabel10.Text = "(" + this.listView1.SelectedIndices.Count + " " + (this.listView1.SelectedIndices.Count > 1 ? MenuLang.SelectedP : MenuLang.Selected) + ")";
             //--------------------------------
         }
+        // Met dans le presse pappier
+        private void toolStripStatusLabel14_Click(object sender, EventArgs e)
+        {
+            //--------------------------------
+            try
+            {
+                string file = this.listView1.SelectedItems[0].Tag.ToString();
+                if (File.Exists(file)) Clipboard.SetImage(Image.FromFile(file));
+            } catch { }
+            //--------------------------------
+        }
         // Ouvre les images séléctionnées
         private void toolStripStatusLabel8_Click(object sender, EventArgs e)
         {
@@ -904,18 +915,21 @@ namespace Captures
                     break;
             }
 
+            string ms = DateTime.Now.Millisecond.ToString();
+            while (ms.Length < 4) { ms = "0" + ms; }
+
             string file = // Créer le nom du fichier
                 this.DossierCapture +
                 @"\" +
                 DateTime.Now.Year +
-                DateTime.Now.Month +
-                DateTime.Now.Day +
+                (DateTime.Now.Month.ToString().Length < 2 ? "0" : "") + DateTime.Now.Month +
+                (DateTime.Now.Day.ToString().Length < 2 ? "0" : "") + DateTime.Now.Day +
                 "_" +
-                DateTime.Now.Hour +
-                DateTime.Now.Minute +
-                DateTime.Now.Second +
+                (DateTime.Now.Hour.ToString().Length < 2 ? "0" : "") + DateTime.Now.Hour +
+                (DateTime.Now.Minute.ToString().Length < 2 ? "0" : "") + DateTime.Now.Minute +
+                (DateTime.Now.Second.ToString().Length < 2 ? "0" : "") + DateTime.Now.Second +
                 "_" +
-                DateTime.Now.Millisecond +
+                ms +
                 formattext.ToLower();
 
             try // Sauvegarde

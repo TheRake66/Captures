@@ -10,3 +10,4 @@ __Version 5.0.0.7 :__ Try catch global
 __Version 5.0.0.8 :__ Correction only one instance  
 __Version 5.0.0.9 :__ Correction restart  
 __Version 5.1.0.9 :__ Image to clipboard  
+__Version 5.2.0.10 :__ Button image to clipboard + changement nom image  
