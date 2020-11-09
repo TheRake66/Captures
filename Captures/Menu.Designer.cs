@@ -84,8 +84,8 @@
             // 
             // toolStrip1
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(60, 60);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
@@ -97,38 +97,37 @@
             // 
             // toolStripButton1
             // 
-            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
             this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator3
             // 
-            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
             // toolStripButton3
             // 
-            resources.ApplyResources(this.toolStripButton3, "toolStripButton3");
             this.toolStripButton3.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.toolStripButton3, "toolStripButton3");
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // toolStripButton2
             // 
-            resources.ApplyResources(this.toolStripButton2, "toolStripButton2");
             this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.toolStripButton2, "toolStripButton2");
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.paramètresToolStripMenuItem,
@@ -137,11 +136,11 @@
             this.touchePourActiveToolStripMenuItem,
             this.touchePourZoneToolStripMenuItem,
             this.toolStripMenuItem1});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // paramètresToolStripMenuItem
             // 
-            resources.ApplyResources(this.paramètresToolStripMenuItem, "paramètresToolStripMenuItem");
             this.paramètresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.changerLeDossierDesCapturesToolStripMenuItem,
             this.toolStripSeparator6,
@@ -152,6 +151,7 @@
             this.toolStripSeparator4,
             this.quitterToolStripMenuItem});
             this.paramètresToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.paramètresToolStripMenuItem, "paramètresToolStripMenuItem");
             this.paramètresToolStripMenuItem.Name = "paramètresToolStripMenuItem";
             // 
             // changerLeDossierDesCapturesToolStripMenuItem
@@ -162,8 +162,8 @@
             // 
             // toolStripSeparator6
             // 
-            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             this.toolStripSeparator6.Name = "toolStripSeparator6";
+            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             // 
             // notificationsLorsDesCapturesToolStripMenuItem
             // 
@@ -179,18 +179,18 @@
             // 
             // toolStripSeparator2
             // 
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // languesToolStripMenuItem
             // 
-            resources.ApplyResources(this.languesToolStripMenuItem, "languesToolStripMenuItem");
             this.languesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.françaisToolStripMenuItem,
             this.anglaisToolStripMenuItem,
             this.espagnolToolStripMenuItem,
             this.chinoisToolStripMenuItem});
             this.languesToolStripMenuItem.Name = "languesToolStripMenuItem";
+            resources.ApplyResources(this.languesToolStripMenuItem, "languesToolStripMenuItem");
             // 
             // françaisToolStripMenuItem
             // 
@@ -222,8 +222,8 @@
             // 
             // toolStripSeparator4
             // 
-            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             this.toolStripSeparator4.Name = "toolStripSeparator4";
+            resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
             // quitterToolStripMenuItem
             // 
@@ -233,36 +233,36 @@
             // 
             // formatToolStripMenuItem
             // 
-            resources.ApplyResources(this.formatToolStripMenuItem, "formatToolStripMenuItem");
             this.formatToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.formatToolStripMenuItem, "formatToolStripMenuItem");
             this.formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             // 
             // touchePourTousToolStripMenuItem
             // 
-            resources.ApplyResources(this.touchePourTousToolStripMenuItem, "touchePourTousToolStripMenuItem");
             this.touchePourTousToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.touchePourTousToolStripMenuItem, "touchePourTousToolStripMenuItem");
             this.touchePourTousToolStripMenuItem.Name = "touchePourTousToolStripMenuItem";
             // 
             // touchePourActiveToolStripMenuItem
             // 
-            resources.ApplyResources(this.touchePourActiveToolStripMenuItem, "touchePourActiveToolStripMenuItem");
             this.touchePourActiveToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.touchePourActiveToolStripMenuItem, "touchePourActiveToolStripMenuItem");
             this.touchePourActiveToolStripMenuItem.Name = "touchePourActiveToolStripMenuItem";
             // 
             // touchePourZoneToolStripMenuItem
             // 
-            resources.ApplyResources(this.touchePourZoneToolStripMenuItem, "touchePourZoneToolStripMenuItem");
             this.touchePourZoneToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.touchePourZoneToolStripMenuItem, "touchePourZoneToolStripMenuItem");
             this.touchePourZoneToolStripMenuItem.Name = "touchePourZoneToolStripMenuItem";
             // 
             // toolStripMenuItem1
             // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.miseÀJourToolStripMenuItem,
             this.toolStripSeparator5,
             this.àProposToolStripMenuItem});
             this.toolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             // 
             // miseÀJourToolStripMenuItem
@@ -273,8 +273,8 @@
             // 
             // toolStripSeparator5
             // 
-            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             this.toolStripSeparator5.Name = "toolStripSeparator5";
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
             // àProposToolStripMenuItem
             // 
@@ -284,7 +284,6 @@
             // 
             // statusStrip1
             // 
-            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel4,
@@ -300,12 +299,13 @@
             this.toolStripStatusLabel11,
             this.toolStripStatusLabel12,
             this.toolStripStatusLabel1});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.Name = "statusStrip1";
             // 
             // toolStripStatusLabel4
             // 
-            resources.ApplyResources(this.toolStripStatusLabel4, "toolStripStatusLabel4");
             this.toolStripStatusLabel4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel4, "toolStripStatusLabel4");
             this.toolStripStatusLabel4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel4.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
@@ -313,17 +313,17 @@
             // 
             // toolStripStatusLabel13
             // 
-            resources.ApplyResources(this.toolStripStatusLabel13, "toolStripStatusLabel13");
             this.toolStripStatusLabel13.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.toolStripStatusLabel13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel13, "toolStripStatusLabel13");
             this.toolStripStatusLabel13.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel13.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel13.Name = "toolStripStatusLabel13";
             // 
             // toolStripStatusLabel3
             // 
-            resources.ApplyResources(this.toolStripStatusLabel3, "toolStripStatusLabel3");
             this.toolStripStatusLabel3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel3, "toolStripStatusLabel3");
             this.toolStripStatusLabel3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel3.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
@@ -331,8 +331,8 @@
             // 
             // toolStripStatusLabel5
             // 
-            resources.ApplyResources(this.toolStripStatusLabel5, "toolStripStatusLabel5");
             this.toolStripStatusLabel5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel5, "toolStripStatusLabel5");
             this.toolStripStatusLabel5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel5.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
@@ -340,8 +340,8 @@
             // 
             // toolStripStatusLabel6
             // 
-            resources.ApplyResources(this.toolStripStatusLabel6, "toolStripStatusLabel6");
             this.toolStripStatusLabel6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel6, "toolStripStatusLabel6");
             this.toolStripStatusLabel6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel6.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
@@ -356,9 +356,9 @@
             // 
             // toolStripStatusLabel7
             // 
-            resources.ApplyResources(this.toolStripStatusLabel7, "toolStripStatusLabel7");
             this.toolStripStatusLabel7.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.toolStripStatusLabel7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel7, "toolStripStatusLabel7");
             this.toolStripStatusLabel7.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel7.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel7.Name = "toolStripStatusLabel7";
@@ -379,8 +379,8 @@
             // 
             // toolStripStatusLabel8
             // 
-            resources.ApplyResources(this.toolStripStatusLabel8, "toolStripStatusLabel8");
             this.toolStripStatusLabel8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel8, "toolStripStatusLabel8");
             this.toolStripStatusLabel8.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel8.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
@@ -388,8 +388,8 @@
             // 
             // toolStripStatusLabel11
             // 
-            resources.ApplyResources(this.toolStripStatusLabel11, "toolStripStatusLabel11");
             this.toolStripStatusLabel11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel11, "toolStripStatusLabel11");
             this.toolStripStatusLabel11.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel11.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel11.Name = "toolStripStatusLabel11";
@@ -397,17 +397,17 @@
             // 
             // toolStripStatusLabel12
             // 
-            resources.ApplyResources(this.toolStripStatusLabel12, "toolStripStatusLabel12");
             this.toolStripStatusLabel12.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Left;
             this.toolStripStatusLabel12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel12, "toolStripStatusLabel12");
             this.toolStripStatusLabel12.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toolStripStatusLabel12.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel12.Name = "toolStripStatusLabel12";
             // 
             // toolStripStatusLabel1
             // 
-            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             this.toolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
             this.toolStripStatusLabel1.IsLink = true;
             this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
@@ -416,9 +416,9 @@
             // 
             // listView1
             // 
-            resources.ApplyResources(this.listView1, "listView1");
             this.listView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(212)))), ((int)(((byte)(227)))));
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.listView1, "listView1");
             this.listView1.ForeColor = System.Drawing.Color.Black;
             this.listView1.HideSelection = false;
             this.listView1.Name = "listView1";
@@ -438,9 +438,9 @@
             // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel1.Controls.Add(this.listView1);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // Menu

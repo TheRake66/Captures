@@ -18,6 +18,8 @@ namespace Captures
             //--------------------------------
             try
             {
+                Thread.Sleep(500); // Pour le restart
+
                 int count = 0;
                 Process[] processCollection = Process.GetProcesses();
                 foreach (Process p in processCollection)
