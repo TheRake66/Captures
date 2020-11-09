@@ -196,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8_vintage_camera_160px.ico" />
-    <None Include="Resources\Au3Info_x64.exe" />
     <None Include="Resources\sthgstdgh - Copie.png" />
     <None Include="Resources\sthgstdgh.png" />
     <None Include="Resources\Shot.wav" />

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,13 +18,20 @@ namespace Captures
             //--------------------------------
             try
             {
-                bool createdNew;
-                Mutex mutex = new Mutex(true, "Captures", out createdNew);
-                if (!createdNew) return;
+                int count = 0;
+                Process[] processCollection = Process.GetProcesses();
+                foreach (Process p in processCollection)
+                {
+                    if (p.ProcessName == Path.GetFileNameWithoutExtension(Application.ExecutablePath)) count++;
+                }
 
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Menu());
+                // Une seule instance
+                if (count == 1)
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Menu());
+                }
             } 
             catch (Exception ex)
             {

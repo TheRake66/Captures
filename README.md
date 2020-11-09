@@ -7,3 +7,4 @@ __Version 5.0.0.4 :__ Correction et changement fichier de config en json
 __Version 5.0.0.5 :__ Correction quand meme touche  
 __Version 5.0.0.6 :__ Manifest + only one instance  
 __Version 5.0.0.7 :__ Try catch global  
+__Version 5.0.0.8 :__ Correction only one instance  

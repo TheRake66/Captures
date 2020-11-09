@@ -419,9 +419,7 @@ namespace Captures
         {
             //--------------------------------
             // Verifi le dossier
-            string folder = this.toolStripStatusLabel1.Text;
-
-            if (!Directory.Exists(folder)) MessageBox.Show(MenuLang.Error_FindFolder, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!Directory.Exists(this.DossierCapture)) MessageBox.Show(MenuLang.Error_FindFolder, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 // Change et rafraichi le label
@@ -438,7 +436,7 @@ namespace Captures
                 list.ImageSize = new Size(this.TailleImageList, this.TailleImageList);
                 this.listView1.LargeImageList = list;
 
-                foreach (string file in Directory.GetFiles(folder))
+                foreach (string file in Directory.GetFiles(this.DossierCapture))
                 {
                     if (Path.GetExtension(file).ToUpper().Equals(format)) // Bon format
                     {
@@ -470,7 +468,7 @@ namespace Captures
 
                 this.toolStripStatusLabel9.Text = this.listView1.Items.Count + " " + (this.listView1.Items.Count > 1 ? MenuLang.ElementP : MenuLang.Element);
                 this.toolStripStatusLabel1.IsLink = true;
-                this.toolStripStatusLabel1.Text = folder; // remet le dossier
+                this.toolStripStatusLabel1.Text = this.DossierCapture; // remet le dossier
             }
             //--------------------------------
         }
@@ -613,7 +611,7 @@ namespace Captures
             {
                 this.toolStripStatusLabel1.Text = diag.SelectedPath;
                 this.DossierCapture = diag.SelectedPath;
-               this.ConfigFile.SavePathFolder = diag.SelectedPath;
+                this.ConfigFile.SavePathFolder = diag.SelectedPath;
                 LoadCaptureExplorer();
             }
             //--------------------------------
