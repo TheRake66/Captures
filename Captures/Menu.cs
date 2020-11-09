@@ -921,6 +921,7 @@ namespace Captures
             try // Sauvegarde
             {
                 pImage.Save(file, format);
+                Clipboard.SetImage(pImage);
                 if (this.notificationsLorsDesCapturesToolStripMenuItem.Checked) this.notifyIcon1.ShowBalloonTip(5000, "Captures", MenuLang.Capture_Sucess, ToolTipIcon.Info);
                 LoadCaptureExplorer(file);
             }
