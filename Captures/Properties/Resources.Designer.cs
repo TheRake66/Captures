@@ -63,6 +63,16 @@ namespace Captures.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CapturesIcon {
+            get {
+                object obj = ResourceManager.GetObject("CapturesIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DownIcon {
             get {
                 object obj = ResourceManager.GetObject("DownIcon", resourceCulture);
@@ -77,15 +87,6 @@ namespace Captures.Properties {
             get {
                 object obj = ResourceManager.GetObject("ErrorIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.IO.UnmanagedMemoryStream semblable à System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Shot {
-            get {
-                return ResourceManager.GetStream("Shot", resourceCulture);
             }
         }
         

@@ -49,8 +49,6 @@ namespace Captures
         private ToolStripMenuItem SelectedKeyWin;
         private ToolStripMenuItem SelectedKeyZone;
 
-        private bool DrawingCourse; // Pour la zone
-        private Point DrawingStartPoint; // idem
         private int TailleImageList; // Taille des image dans l'explorateur
         private string DossierCapture;
         private AppConfig ConfigFile;
@@ -71,7 +69,7 @@ namespace Captures
             if (this.ConfigFile == null) this.ConfigFile = new AppConfig();
 
             CultureInfo langue = this.ConfigFile.Language;
-            if (!new string[] { "fr", "es", "en", "zh"}.Contains(langue.Name)) langue = new CultureInfo("fr");
+            if (!new string[] { "fr", "es", "en", "zh" }.Contains(langue.Name)) langue = new CultureInfo("fr");
             Thread.CurrentThread.CurrentUICulture = langue;
             Thread.CurrentThread.CurrentCulture = langue;
 
@@ -99,16 +97,16 @@ namespace Captures
         {
             //--------------------------------
             // Charge la config
-            bool startup            = this.ConfigFile.StartOnBoot;
-            bool notify             = this.ConfigFile.Notify;
-            int sizew               = this.ConfigFile.WindowSizeWidth;
-            int sizeh               = this.ConfigFile.WindowSizeHeight;
-            int iconsize            = this.ConfigFile.IconSize;
-            ImageFormat formatfile  = this.ConfigFile.Format;
-            int keyall              = this.ConfigFile.KeyAllsScreens;
-            int keyactive           = this.ConfigFile.KeyActiveWindow;
-            int keyzone             = this.ConfigFile.KeyZone;
-            string folder           = this.ConfigFile.SavePathFolder;
+            bool startup = this.ConfigFile.StartOnBoot;
+            bool notify = this.ConfigFile.Notify;
+            int sizew = this.ConfigFile.WindowSizeWidth;
+            int sizeh = this.ConfigFile.WindowSizeHeight;
+            int iconsize = this.ConfigFile.IconSize;
+            ImageFormat formatfile = this.ConfigFile.Format;
+            int keyall = this.ConfigFile.KeyAllsScreens;
+            int keyactive = this.ConfigFile.KeyActiveWindow;
+            int keyzone = this.ConfigFile.KeyZone;
+            string folder = this.ConfigFile.SavePathFolder;
 
 
             // Gère l'autostart
@@ -157,9 +155,9 @@ namespace Captures
             List<string> hotkeys = new List<string>();
             List<object> hotkeysstag = new List<object>();
             for (int i = 1; i < 13; i++)
-            { 
+            {
                 hotkeys.Add("F" + i);
-                hotkeysstag.Add(i); 
+                hotkeysstag.Add(i);
             }
 
             if (!hotkeysstag.Contains(keyall)) { keyall = 9; }
@@ -171,7 +169,7 @@ namespace Captures
             {
                 finderror = false;
                 if (keyall == keyactive || keyall == keyzone)
-                { 
+                {
                     keyall = 9;
                     finderror = true;
                 }
@@ -181,7 +179,7 @@ namespace Captures
                     finderror = true;
                 }
                 if (keyzone == keyall || keyzone == keyactive)
-                { 
+                {
                     keyzone = 10;
                     finderror = true;
                 }
@@ -240,8 +238,8 @@ namespace Captures
             //--------------------------------
             if (this.WindowState != FormWindowState.Maximized)
             {
-               this.ConfigFile.WindowSizeWidth = this.Width;
-               this.ConfigFile.WindowSizeHeight = this.Height;
+                this.ConfigFile.WindowSizeWidth = this.Width;
+                this.ConfigFile.WindowSizeHeight = this.Height;
             }
             //--------------------------------
         }
@@ -362,7 +360,7 @@ namespace Captures
             this.notifyIcon1.ContextMenuStrip = new ContextMenuStrip();
 
             // Touche afficher
-            this.notifyIcon1.ContextMenuStrip.Items.Add(MenuLang.Context_Show, null, new EventHandler((s, e) => { AfficherCaptures(); }));
+            this.notifyIcon1.ContextMenuStrip.Items.Add(MenuLang.Context_Show, Properties.Resources.CapturesIcon, new EventHandler((s, e) => { AfficherCaptures(); }));
             this.notifyIcon1.ContextMenuStrip.Items.Add("-");
 
             // Touche tous
@@ -391,14 +389,11 @@ namespace Captures
             this.notifyIcon1.ContextMenuStrip.Items.Add("-");
 
             // Touche pour infos
-            this.notifyIcon1.ContextMenuStrip.Items.Add(this.àProposToolStripMenuItem.Text, null, new EventHandler((s, e) => { AfficherAPropos(); }));
+            this.notifyIcon1.ContextMenuStrip.Items.Add(this.àProposToolStripMenuItem.Text, this.àProposToolStripMenuItem.Image, new EventHandler((s, e) => { AfficherAPropos(); }));
             this.notifyIcon1.ContextMenuStrip.Items.Add("-");
 
             // Touche quitter
-            ToolStripMenuItem quit = new ToolStripMenuItem();
-            quit.Text = this.quitterToolStripMenuItem.Text;
-            quit.Click += new EventHandler((s, e) => { Application.Exit(); });
-            this.notifyIcon1.ContextMenuStrip.Items.Add(quit);
+            this.notifyIcon1.ContextMenuStrip.Items.Add(this.quitterToolStripMenuItem.Text, this.quitterToolStripMenuItem.Image, new EventHandler((s, e) => { Application.Exit(); }));
             //--------------------------------
         }
         //=================================================================
@@ -410,12 +405,12 @@ namespace Captures
         private void listView1_DoubleClick(object sender, EventArgs e) // 
         {
             //--------------------------------
-            try {  Process.Start("explorer.exe", this.listView1.SelectedItems[0].Tag.ToString()); }
+            try { Process.Start("explorer.exe", this.listView1.SelectedItems[0].Tag.ToString()); }
             catch { MessageBox.Show(MenuLang.Error_AccessFile, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             //--------------------------------
         }
         // Charge les fichiers dans l'explorateur
-        private void LoadCaptureExplorer(string pNewFile = "") 
+        private void LoadCaptureExplorer(string pNewFile = "")
         {
             //--------------------------------
             // Verifi le dossier
@@ -509,7 +504,7 @@ namespace Captures
             this.toolStripStatusLabel2.Text = this.TailleImageList + "x" + this.TailleImageList;
             if (this.TailleImageList == 256) this.toolStripStatusLabel2.Text += " (" + MenuLang.Max + ")";
             else if (this.TailleImageList == 16) this.toolStripStatusLabel2.Text += " (" + MenuLang.Min + ")";
-           this.ConfigFile.IconSize = this.TailleImageList;
+            this.ConfigFile.IconSize = this.TailleImageList;
             LoadCaptureExplorer();
             //--------------------------------
         }
@@ -537,7 +532,8 @@ namespace Captures
             {
                 string file = this.listView1.SelectedItems[0].Tag.ToString();
                 if (File.Exists(file)) Clipboard.SetImage(Image.FromFile(file));
-            } catch { }
+            }
+            catch { }
             //--------------------------------
         }
         // Ouvre les images séléctionnées
@@ -632,7 +628,7 @@ namespace Captures
         {
             //--------------------------------
             notificationsLorsDesCapturesToolStripMenuItem.Checked = !this.notificationsLorsDesCapturesToolStripMenuItem.Checked;
-           this.ConfigFile.Notify = notificationsLorsDesCapturesToolStripMenuItem.Checked;
+            this.ConfigFile.Notify = notificationsLorsDesCapturesToolStripMenuItem.Checked;
             //--------------------------------
         }
         // Autostart active/desactive
@@ -640,13 +636,13 @@ namespace Captures
         {
             //--------------------------------
             éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked = !this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked;
-           this.ConfigFile.StartOnBoot = éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked;
+            this.ConfigFile.StartOnBoot = éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked;
 
             // Startup + Captures + .bat
             string shortcutname = getStartupShortcut();
             if (this.éxecuterAuDémarrageDeWindowsToolStripMenuItem.Checked)
             {
-                try 
+                try
                 {
                     // Créer un raccourci
                     IWshRuntimeLibrary.WshShell wsh = new IWshRuntimeLibrary.WshShell();
@@ -676,7 +672,7 @@ namespace Captures
         private void changeLanguageClick(object sender, EventArgs e)
         {
             //--------------------------------
-           this.ConfigFile.Language = new CultureInfo((string)((ToolStripMenuItem)sender).Tag);
+            this.ConfigFile.Language = new CultureInfo((string)((ToolStripMenuItem)sender).Tag);
             Application.Restart();
             //--------------------------------
         }
@@ -801,15 +797,20 @@ namespace Captures
             back.Controls.Add(label);
 
 
+            bool DrawingCourse = false;
+            Point DrawingStartPoint = new Point();
+            Size DrawingSize = new Size();
+            Point DrawingPoint = new Point();
+
             // Gère la séléction de zone
             back.MouseDown += new MouseEventHandler((a, b) => // Démarre la séléction
             {
-                this.DrawingCourse = true;
-                this.DrawingStartPoint = b.Location;
+                DrawingCourse = true;
+                DrawingStartPoint = b.Location;
             });
             back.MouseUp += new MouseEventHandler((a, b) => // Arrete la séléction
             {
-                this.DrawingCourse = false;
+                DrawingCourse = false;
                 if (zone.Width > 0 && zone.Height > 0) // Si aucune selection
                 {
                     back.Dispose();
@@ -817,24 +818,24 @@ namespace Captures
                     // Sauvegarde l'image de la zone
                     Bitmap desktop = new Bitmap(screenw, screenh, PixelFormat.Format32bppArgb);
                     Graphics.FromImage(desktop).CopyFromScreen(screenx, screeny, 0, 0, new Size(screenw, screenh));
-                    Bitmap save = new Bitmap(zone.Width - TAILLE_RED_BORDER * 2, zone.Height - TAILLE_RED_BORDER * 2, PixelFormat.Format32bppArgb); 
+                    Bitmap save = new Bitmap(zone.Width - TAILLE_RED_BORDER * 2, zone.Height - TAILLE_RED_BORDER * 2, PixelFormat.Format32bppArgb);
                     Graphics.FromImage(save).DrawImage(desktop, -(zone.Location.X + TAILLE_RED_BORDER), -(zone.Location.Y + TAILLE_RED_BORDER));
                     CaptureSaveBitmap(save);
 
                     CaptureStop(pFromGUI);
                 }
             });
-            back.MouseMove += new MouseEventHandler((a, b) =>
+            back.MouseMove += new MouseEventHandler((a, b) => // Deplace la selection
             {
-                if (this.DrawingCourse)
+                if (DrawingCourse)
                 {
-                    // Déplace le panel
-                    int backx = Math.Min(this.DrawingStartPoint.X, b.X) - TAILLE_RED_BORDER;
-                    int backy = Math.Min(this.DrawingStartPoint.Y, b.Y) - TAILLE_RED_BORDER;
-                    int backw = Math.Max(this.DrawingStartPoint.X, b.X) - Math.Min(this.DrawingStartPoint.X, b.X) + TAILLE_RED_BORDER * 2;
-                    int backh = Math.Max(this.DrawingStartPoint.Y, b.Y) - Math.Min(this.DrawingStartPoint.Y, b.Y) + TAILLE_RED_BORDER * 2;
-                    zone.Location = new Point(backx, backy);
-                    zone.Size = new Size(backw, backh);
+                    DrawingPoint.X = Math.Min(DrawingStartPoint.X, b.X) - TAILLE_RED_BORDER;
+                    DrawingPoint.Y = Math.Min(DrawingStartPoint.Y, b.Y) - TAILLE_RED_BORDER;
+                    DrawingSize.Width = Math.Abs(DrawingStartPoint.X - b.X) + TAILLE_RED_BORDER * 2;
+                    DrawingSize.Height = Math.Abs(DrawingStartPoint.Y - b.Y) + TAILLE_RED_BORDER * 2;
+
+                    zone.Location = DrawingPoint;
+                    zone.Size = DrawingSize;
                 }
             });
             //--------------------------------
@@ -851,7 +852,9 @@ namespace Captures
             /* Sous Windows 10 on utilise une librairie unique à Windows 10 (dwmapi avec DwmGetWindowAttribute) pour pouvoir
              * récupérer les bordures fines de Windows 10 mais sous Windows 7 il faut utiliser la librairie classique (user32
              * avec GetWindowRect) pour récupérer les grosses bordures. */
-            if (DwmGetWindowAttribute(hwd, 9, ref rect, Marshal.SizeOf(typeof(Rectangle))) != IntPtr.Zero && !GetWindowRect(hwd, ref rect)) this.notifyIcon1.ShowBalloonTip(5000, "Captures", MenuLang.Error_Lib, ToolTipIcon.Error);
+            if (DwmGetWindowAttribute(hwd, 9, ref rect, Marshal.SizeOf(typeof(Rectangle))) != IntPtr.Zero &&
+                !GetWindowRect(hwd, ref rect))
+                this.notifyIcon1.ShowBalloonTip(5000, "Captures", MenuLang.Error_Lib, ToolTipIcon.Error);
             else
             {
                 // Sauvegarde
@@ -969,7 +972,7 @@ namespace Captures
              * 0 = Clé non pressée.
              * 
              * 111 + 1 = F1   111 + 5 = F5 etc...
-             */ 
+             */
 
             if (GetAsyncKeyState(111 + (int)pMenu.Tag) == 0) return false;
             else return true;
@@ -1023,7 +1026,7 @@ namespace Captures
                 }
                 else
                 {
-                    if (MessageBox.Show(MenuLang.Update_Valaible + 
+                    if (MessageBox.Show(MenuLang.Update_Valaible +
                         Environment.NewLine +
                         currentversion + " → " + lastversion
                         , "Captures", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)

@@ -68,6 +68,7 @@
             this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel10 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel14 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel11 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel12 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -76,7 +77,6 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripStatusLabel14 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -87,6 +87,7 @@
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(60, 60);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
@@ -100,6 +101,7 @@
             // 
             this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.toolStripButton1, "toolStripButton1");
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(5);
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -112,6 +114,7 @@
             // 
             this.toolStripButton3.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.toolStripButton3, "toolStripButton3");
+            this.toolStripButton3.Margin = new System.Windows.Forms.Padding(5);
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -124,6 +127,7 @@
             // 
             this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.toolStripButton2, "toolStripButton2");
+            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(5);
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -190,8 +194,8 @@
             this.anglaisToolStripMenuItem,
             this.espagnolToolStripMenuItem,
             this.chinoisToolStripMenuItem});
-            this.languesToolStripMenuItem.Name = "languesToolStripMenuItem";
             resources.ApplyResources(this.languesToolStripMenuItem, "languesToolStripMenuItem");
+            this.languesToolStripMenuItem.Name = "languesToolStripMenuItem";
             // 
             // françaisToolStripMenuItem
             // 
@@ -379,6 +383,15 @@
             this.toolStripStatusLabel10.Margin = new System.Windows.Forms.Padding(0, 3, 5, 2);
             this.toolStripStatusLabel10.Name = "toolStripStatusLabel10";
             // 
+            // toolStripStatusLabel14
+            // 
+            this.toolStripStatusLabel14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripStatusLabel14, "toolStripStatusLabel14");
+            this.toolStripStatusLabel14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.toolStripStatusLabel14.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
+            this.toolStripStatusLabel14.Name = "toolStripStatusLabel14";
+            this.toolStripStatusLabel14.Click += new System.EventHandler(this.toolStripStatusLabel14_Click);
+            // 
             // toolStripStatusLabel8
             // 
             this.toolStripStatusLabel8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -444,15 +457,6 @@
             this.panel1.Controls.Add(this.listView1);
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
-            // 
-            // toolStripStatusLabel14
-            // 
-            this.toolStripStatusLabel14.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.toolStripStatusLabel14, "toolStripStatusLabel14");
-            this.toolStripStatusLabel14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.toolStripStatusLabel14.Margin = new System.Windows.Forms.Padding(5, 3, 5, 2);
-            this.toolStripStatusLabel14.Name = "toolStripStatusLabel14";
-            this.toolStripStatusLabel14.Click += new System.EventHandler(this.toolStripStatusLabel14_Click);
             // 
             // Menu
             // 
