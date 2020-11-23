@@ -811,12 +811,12 @@ namespace Captures
             Point DrawingPoint = new Point();
 
             // Gère la séléction de zone
-            back.MouseDown += new MouseEventHandler((a, b) => // Démarre la séléction
+            MouseEventHandler down = new MouseEventHandler((a, b) => // Démarre la séléction
             {
                 DrawingCourse = true;
-                DrawingStartPoint = b.Location;
+                DrawingStartPoint = back.PointToClient(Cursor.Position);
             });
-            back.MouseUp += new MouseEventHandler((a, b) => // Arrete la séléction
+            MouseEventHandler up = new MouseEventHandler((a, b) => // Arrete la séléction
             {
                 DrawingCourse = false;
 
@@ -839,19 +839,26 @@ namespace Captures
                     zone.Size = new Size(0, 0);
                 }
             });
-            back.MouseMove += new MouseEventHandler((a, b) => // Deplace la selection
+            MouseEventHandler move = new MouseEventHandler((a, b) => // Deplace la selection
             {
                 if (DrawingCourse)
                 {
-                    DrawingPoint.X = Math.Min(DrawingStartPoint.X, b.X) - TAILLE_RED_BORDER;
-                    DrawingPoint.Y = Math.Min(DrawingStartPoint.Y, b.Y) - TAILLE_RED_BORDER;
-                    DrawingSize.Width = Math.Abs(DrawingStartPoint.X - b.X) + TAILLE_RED_BORDER * 2;
-                    DrawingSize.Height = Math.Abs(DrawingStartPoint.Y - b.Y) + TAILLE_RED_BORDER * 2;
+                    DrawingPoint.X = Math.Min(DrawingStartPoint.X, back.PointToClient(Cursor.Position).X) - TAILLE_RED_BORDER;
+                    DrawingPoint.Y = Math.Min(DrawingStartPoint.Y, back.PointToClient(Cursor.Position).Y) - TAILLE_RED_BORDER;
+                    DrawingSize.Width = Math.Abs(DrawingStartPoint.X - back.PointToClient(Cursor.Position).X) + TAILLE_RED_BORDER * 2;
+                    DrawingSize.Height = Math.Abs(DrawingStartPoint.Y - back.PointToClient(Cursor.Position).Y) + TAILLE_RED_BORDER * 2;
 
                     zone.Location = DrawingPoint;
                     zone.Size = DrawingSize;
                 }
             });
+
+            back.MouseDown += down;
+            label.MouseDown += down;
+            back.MouseMove += move;
+            label.MouseMove += move;
+            back.MouseUp += up;
+            label.MouseUp += up;
             //--------------------------------
         }
         // Capture de fenetre

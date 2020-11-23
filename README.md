@@ -14,3 +14,4 @@ __Version 5.2.0.10 :__ Button image to clipboard + changement nom image
 __Version 5.3.0.10 :__ Amélioration des mises à jour  
 __Version 5.4.0.10 :__ Changement interface + optimisation  
 __Version 5.4.0.11 :__ Correction petit zone + langues  
+__Version 5.4.0.12 :__ Correction zone sur label  
