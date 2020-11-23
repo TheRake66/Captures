@@ -142,16 +142,16 @@
     <value>Error</value>
   </data>
   <data name="Error_AccessFile" xml:space="preserve">
-    <value>Error, image \"{Name}\" cannot be accessed !</value>
+    <value>Error, image "{Name}" cannot be accessed !</value>
   </data>
   <data name="Error_AccessFolder" xml:space="preserve">
-    <value>The capture folder is inaccessible !</value>
+    <value>The folder "{Name}" is inaccessible !</value>
   </data>
   <data name="Error_DelFile" xml:space="preserve">
-    <value>Error, could not delete image \"{Name}\"!</value>
+    <value>Error, could not delete image "{Name}"!</value>
   </data>
   <data name="Error_FindFolder" xml:space="preserve">
-    <value>Error, the capture folder was not found !</value>
+    <value>Error, the folder "{Name}" was not found !</value>
   </data>
   <data name="Error_Lib" xml:space="preserve">
     <value>Internal library problem! Please contact the developers ;)</value>
@@ -169,7 +169,7 @@
     <value>Error, this key is already used for window capture !</value>
   </data>
   <data name="Fatal_Error" xml:space="preserve">
-    <value>A fatal error has occurred !\nMessage : </value>
+    <value>A fatal error has occurred ! Message : </value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading</value>

@@ -142,16 +142,16 @@
     <value>Error</value>
   </data>
   <data name="Error_AccessFile" xml:space="preserve">
-    <value>¡ Error, no se puede acceder a la imagen \"{Name}\" !</value>
+    <value>¡ Error, no se puede acceder a la imagen "{Name}" !</value>
   </data>
   <data name="Error_AccessFolder" xml:space="preserve">
-    <value>¡ La carpeta de captura es inaccesible !</value>
+    <value>¡ La carpeta "{Name}" es inaccesible !</value>
   </data>
   <data name="Error_DelFile" xml:space="preserve">
-    <value>¡ Error, no pudo borrar la imagen \"{Name}\" !</value>
+    <value>¡ Error, no pudo borrar la imagen "{Name}" !</value>
   </data>
   <data name="Error_FindFolder" xml:space="preserve">
-    <value>¡ Error, no se encontró la carpeta de captura !</value>
+    <value>¡ Error, no se encontró la carpeta "{Name}" !</value>
   </data>
   <data name="Error_Lib" xml:space="preserve">
     <value>¡ Problema interno de la biblioteca ! Póngase en contacto con los desarrolladores ;)</value>
@@ -169,7 +169,7 @@
     <value>¡ Error, esta clave ya se usa para la captura de ventana !</value>
   </data>
   <data name="Fatal_Error" xml:space="preserve">
-    <value>¡ Ha ocurrido un error fatal !\nMensaje : </value>
+    <value>¡ Ha ocurrido un error fatal ! Mensaje : </value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Cargando</value>

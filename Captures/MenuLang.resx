@@ -142,16 +142,16 @@
     <value>Erreur</value>
   </data>
   <data name="Error_AccessFile" xml:space="preserve">
-    <value>Erreur, l'image \"{Name}\" est inaccessible !</value>
+    <value>Erreur, l'image "{Name}" est inaccessible !</value>
   </data>
   <data name="Error_AccessFolder" xml:space="preserve">
-    <value>Le dossier des captures est inaccessible !</value>
+    <value>Le dossier des "{Name}" est inaccessible !</value>
   </data>
   <data name="Error_DelFile" xml:space="preserve">
-    <value>Erreur, impossible de supprimer l'image \"{Name}\" !</value>
+    <value>Erreur, impossible de supprimer l'image "{Name}" !</value>
   </data>
   <data name="Error_FindFolder" xml:space="preserve">
-    <value>Erreur, le dossier des captures est introuvable !</value>
+    <value>Erreur, le dossier "{Name}" est introuvable !</value>
   </data>
   <data name="Error_Lib" xml:space="preserve">
     <value>Problème de librairie interne ! Merci de contacter les développeurs ;)</value>
@@ -169,7 +169,7 @@
     <value>Erreur, cette touche est déjà utilisée pour la capture de fenêtre !</value>
   </data>
   <data name="Fatal_Error" xml:space="preserve">
-    <value>Une erreur fatale est survenue !\nMessage : </value>
+    <value>Une erreur fatale est survenue ! Message : </value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Chargement</value>

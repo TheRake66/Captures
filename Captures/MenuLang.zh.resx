@@ -142,16 +142,16 @@
     <value>错误</value>
   </data>
   <data name="Error_AccessFile" xml:space="preserve">
-    <value>错误，无法访问图像 \"{Name}\"！</value>
+    <value>错误，无法访问图像 "{Name}"！</value>
   </data>
   <data name="Error_AccessFolder" xml:space="preserve">
-    <value>捕获文件夹不可访问！</value>
+    <value>文件夹 "{Name}" 不可访问！</value>
   </data>
   <data name="Error_DelFile" xml:space="preserve">
-    <value>错误，无法删除图像 \"{Name}\" ！</value>
+    <value>错误，无法删除图像 "{Name}" ！</value>
   </data>
   <data name="Error_FindFolder" xml:space="preserve">
-    <value>错误，找不到捕获文件夹！</value>
+    <value>错误，找不到文件夹 "{Name}"！</value>
   </data>
   <data name="Error_Lib" xml:space="preserve">
     <value>内部库问题 ！ 请联系开发商 ;)</value>
@@ -169,7 +169,7 @@
     <value>错误，此键已用于窗口捕获！</value>
   </data>
   <data name="Fatal_Error" xml:space="preserve">
-    <value>发生致命错误 !\n信息 : </value>
+    <value>发生致命错误 ! 信息 : </value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>载入中</value>

@@ -405,8 +405,16 @@ namespace Captures
         private void listView1_DoubleClick(object sender, EventArgs e) // 
         {
             //--------------------------------
-            try { Process.Start("explorer.exe", this.listView1.SelectedItems[0].Tag.ToString()); }
-            catch { MessageBox.Show(MenuLang.Error_AccessFile, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            string file = this.listView1.SelectedItems[0].Tag.ToString();
+            if (File.Exists(file))
+            {
+                try { Process.Start("explorer.exe", file); }
+                catch { }
+            }
+            else
+            {
+                MessageBox.Show(MenuLang.Error_AccessFile.Replace("{Name}", file), "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //--------------------------------
         }
         // Charge les fichiers dans l'explorateur
@@ -414,7 +422,7 @@ namespace Captures
         {
             //--------------------------------
             // Verifi le dossier
-            if (!Directory.Exists(this.DossierCapture)) MessageBox.Show(MenuLang.Error_FindFolder, "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!Directory.Exists(this.DossierCapture)) MessageBox.Show(MenuLang.Error_FindFolder.Replace("{Name}", this.DossierCapture), "Captures", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
                 // Change et rafraichi le label
@@ -811,7 +819,8 @@ namespace Captures
             back.MouseUp += new MouseEventHandler((a, b) => // Arrete la séléction
             {
                 DrawingCourse = false;
-                if (zone.Width > 0 && zone.Height > 0) // Si aucune selection
+
+                if (zone.Width - TAILLE_RED_BORDER * 2 > 0 && zone.Height - TAILLE_RED_BORDER * 2 > 0) // Si aucune selection
                 {
                     back.Dispose();
 
@@ -823,6 +832,11 @@ namespace Captures
                     CaptureSaveBitmap(save);
 
                     CaptureStop(pFromGUI);
+                }
+                else
+                {
+                    zone.Location = new Point(0, 0);
+                    zone.Size = new Size(0, 0);
                 }
             });
             back.MouseMove += new MouseEventHandler((a, b) => // Deplace la selection
@@ -879,7 +893,7 @@ namespace Captures
                 try { Directory.CreateDirectory(this.toolStripStatusLabel1.Text); }
                 catch
                 {
-                    this.notifyIcon1.ShowBalloonTip(5000, "Captures", MenuLang.Error_AccessFolder, ToolTipIcon.Error);
+                    this.notifyIcon1.ShowBalloonTip(5000, "Captures", MenuLang.Error_AccessFolder.Replace("{Name}", this.DossierCapture), ToolTipIcon.Error);
                     return;
                 }
             }

@@ -133,7 +133,7 @@ namespace Captures {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur, l&apos;image \&quot;{Name}\&quot; est inaccessible !.
+        ///   Recherche une chaîne localisée semblable à Erreur, l&apos;image &quot;{Name}&quot; est inaccessible !.
         /// </summary>
         internal static string Error_AccessFile {
             get {
@@ -142,7 +142,7 @@ namespace Captures {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le dossier des captures est inaccessible !.
+        ///   Recherche une chaîne localisée semblable à Le dossier des &quot;{Name}&quot; est inaccessible !.
         /// </summary>
         internal static string Error_AccessFolder {
             get {
@@ -151,7 +151,7 @@ namespace Captures {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur, impossible de supprimer l&apos;image \&quot;{Name}\&quot; !.
+        ///   Recherche une chaîne localisée semblable à Erreur, impossible de supprimer l&apos;image &quot;{Name}&quot; !.
         /// </summary>
         internal static string Error_DelFile {
             get {
@@ -160,7 +160,7 @@ namespace Captures {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Erreur, le dossier des captures est introuvable !.
+        ///   Recherche une chaîne localisée semblable à Erreur, le dossier &quot;{Name}&quot; est introuvable !.
         /// </summary>
         internal static string Error_FindFolder {
             get {
@@ -214,7 +214,7 @@ namespace Captures {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Une erreur fatale est survenue !\nMessage : .
+        ///   Recherche une chaîne localisée semblable à Une erreur fatale est survenue ! Message : .
         /// </summary>
         internal static string Fatal_Error {
             get {
